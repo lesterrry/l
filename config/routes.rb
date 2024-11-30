@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   default_url_options protocol: :https
 
+  root 'root#index'
+
+  get '/login', to: redirect('/users/sign_in')
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -25,7 +29,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  # Defines the root path route ("/")
-  root "root#index"
 end
