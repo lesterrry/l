@@ -12,3 +12,23 @@
 %code
   = current_user.email
   = current_user.webauthn_id
+
+%div
+  %h1 list
+  - current_user.links.each do |link|
+    = link.index
+    = link.link
+
+%div
+  %h1 new
+  = form_with(model: [:users, @link]) do |form|
+    .field
+      = form.label :index
+      = form.number_field :index
+
+    .field
+      = form.label :link
+      = form.text_field :link
+
+    .actions
+      = form.submit

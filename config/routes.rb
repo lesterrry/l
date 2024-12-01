@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     post 'reauthenticate', to: 'users/reauthentication#reauthenticate', as: :user_reauthentication
 
     namespace :users do
+      resources :links
+
       resources :passkeys, only: [:index, :create, :destroy] do
         collection do
           post :new_create_challenge
