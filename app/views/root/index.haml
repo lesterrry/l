@@ -20,12 +20,18 @@
     = link.link
 
 %div
-  %h1 new
-  = form_with(model: [:users, @link]) do |form|
+  %h1 open
+  = form_with url: user_link_path, method: :get do |form|
     .field
       = form.label :index
       = form.number_field :index
 
+    .actions
+      = form.submit
+
+%div
+  %h1 new
+  = form_with model: [:users, @link] do |form|
     .field
       = form.label :link
       = form.text_field :link

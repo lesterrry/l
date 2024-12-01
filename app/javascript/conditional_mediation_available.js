@@ -5,7 +5,7 @@ class ConditionalMediationNotSupportedError extends Error {
   }
 }
 
-let conditionalMediationAvailable = async function(){
+let conditionalMediationAvailable = async function () {
   if (
     typeof window.PublicKeyCredential !== 'undefined'
     && typeof window.PublicKeyCredential.isConditionalMediationAvailable === 'function'
@@ -17,4 +17,4 @@ let conditionalMediationAvailable = async function(){
 }
 
 
-export {conditionalMediationAvailable, ConditionalMediationNotSupportedError}
+export { conditionalMediationAvailable, ConditionalMediationNotSupportedError }

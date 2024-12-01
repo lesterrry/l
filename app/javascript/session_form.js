@@ -3,17 +3,17 @@ import {
   parseRequestOptionsFromJSON,
 } from "@github/webauthn-json/browser-ponyfill";
 
-import {conditionalMediationAvailable} from "conditional_mediation_available"
+import { conditionalMediationAvailable } from "conditional_mediation_available"
 
 
-let startConditionalMediation = async function(form){
+let startConditionalMediation = async function (form) {
   const available = await conditionalMediationAvailable()
-  if(!available){ return }
+  if (!available) { return }
 
   getChallengeAndSubmitCredential(form)
 }
 
-let getChallengeAndSubmitCredential = async function(form){
+let getChallengeAndSubmitCredential = async function (form) {
   const csrfToken = document.getElementsByName("csrf-token")[0].content;
   let credentialFieldName = form.dataset.credentialFieldName
   let newChallengeURL = new URL(form.dataset.challengeUrl)
@@ -26,8 +26,8 @@ let getChallengeAndSubmitCredential = async function(form){
     },
   })
 
-  const challengeJSON = await(await challengeFetch).json()
-  const credentialAuthenticationOptions = parseRequestOptionsFromJSON({publicKey: challengeJSON})
+  const challengeJSON = await (await challengeFetch).json()
+  const credentialAuthenticationOptions = parseRequestOptionsFromJSON({ publicKey: challengeJSON })
 
   const credentialAuthenticationResponse = await get(credentialAuthenticationOptions)
 
@@ -35,7 +35,7 @@ let getChallengeAndSubmitCredential = async function(form){
   form.submit()
 }
 
-let submitFormEvent = async function(event){
+let submitFormEvent = async function (event) {
   event.preventDefault()
   event.stopImmediatePropagation()
   let form = event.currentTarget
@@ -43,4 +43,4 @@ let submitFormEvent = async function(event){
 }
 
 
-export {startConditionalMediation, submitFormEvent}
+export { startConditionalMediation, submitFormEvent }

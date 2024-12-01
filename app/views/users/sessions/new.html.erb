@@ -11,19 +11,10 @@
 ) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <fieldset>
-    <table>
-      <tr>
-        <th><%= f.check_box :remember_me %></th>
-        <td><%= f.label :remember_me %></td>
-      </tr>
-    </table>
-  </fieldset>
-
   <%= f.hidden_field :passkey_credential %>
 
   <section>
-    <button type="submit"><%= image_tag("passkey-black.svg", width: "25", height: "25") %> Sign in</button>
+    <button type="submit"><%= image_tag("passkey-black.svg", width: "25", height: "25") %>Sign in</button>
   </section>
 <% end %>
 

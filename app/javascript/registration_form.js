@@ -3,7 +3,7 @@ import {
   parseCreationOptionsFromJSON,
 } from "@github/webauthn-json/browser-ponyfill";
 
-let submitFormEvent = async function(event){
+let submitFormEvent = async function (event) {
   const csrfToken = document.getElementsByName("csrf-token")[0].content;
   event.preventDefault()
   event.stopImmediatePropagation()
@@ -24,8 +24,8 @@ let submitFormEvent = async function(event){
     body: data,
   })
 
-  const challengeJSON = await(await challengeFetch).json()
-  const credentialCreationOptions = parseCreationOptionsFromJSON({publicKey: challengeJSON})
+  const challengeJSON = await (await challengeFetch).json()
+  const credentialCreationOptions = parseCreationOptionsFromJSON({ publicKey: challengeJSON })
 
   const credentialCreationResponse = await create(credentialCreationOptions)
 
@@ -33,4 +33,4 @@ let submitFormEvent = async function(event){
   form.submit()
 }
 
-export {submitFormEvent}
+export { submitFormEvent }

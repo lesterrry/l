@@ -3,7 +3,7 @@ import {
   parseRequestOptionsFromJSON,
 } from "@github/webauthn-json/browser-ponyfill";
 
-let getReauthenticationToken = async function(form){
+let getReauthenticationToken = async function (form) {
   const csrfToken = document.getElementsByName("csrf-token")[0].content;
   let reauthenticationTokenFieldName = form.dataset.reauthenticationTokenFieldName
   let reauthenticationChallengeURL = new URL(form.dataset.reauthenticationChallengeUrl)
@@ -17,8 +17,8 @@ let getReauthenticationToken = async function(form){
     },
   })
 
-  const challengeJSON = await(await challengeFetch).json()
-  const credentialAuthenticationOptions = parseRequestOptionsFromJSON({publicKey: challengeJSON})
+  const challengeJSON = await (await challengeFetch).json()
+  const credentialAuthenticationOptions = parseRequestOptionsFromJSON({ publicKey: challengeJSON })
 
   const credentialAuthenticationResponse = await get(credentialAuthenticationOptions)
 
@@ -36,10 +36,10 @@ let getReauthenticationToken = async function(form){
     body: JSON.stringify(reauthenticationTokenFetchBody)
   })
 
-  const reauthenticationTokenResponse = await(await reauthenticationTokenFetch).json()
+  const reauthenticationTokenResponse = await (await reauthenticationTokenFetch).json()
 
   form.elements[reauthenticationTokenFieldName].value = reauthenticationTokenResponse.reauthentication_token
 }
 
 
-export {getReauthenticationToken}
+export { getReauthenticationToken }
