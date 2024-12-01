@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     post 'reauthenticate', to: 'users/reauthentication#reauthenticate', as: :user_reauthentication
 
     get 'links/(:index)', to: 'users/links#show', as: :user_link
-    get 'l/(:index)', to: 'users/links#show'
 
     namespace :users do
       resources :links, only: %i[show create destroy]
@@ -33,5 +32,7 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    get '/(:index)', to: 'users/links#show'
   end
 end

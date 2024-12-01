@@ -20,7 +20,7 @@
 
   %section.list-link
     %h2 recent
-    - current_user.links.order(created_at: :desc).limit(10).reverse_each.each do |link|
+    - current_user.links.order(created_at: :desc).limit(10).each do |link|
       %div
         %span.gray= format_link_index(link.index)
         = link_to link.link, resolve_link(link.link)
