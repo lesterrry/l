@@ -1,0 +1,27 @@
+.shared-button {
+    & {
+        background-color: var(--blue);
+        height: 32px;
+        border: none;
+        border-radius: 8px;
+        padding: 0 14px 0 14px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+    }
+
+    &:hover {
+        background-color: var(--darkblue);
+    }
+
+    & > img {
+        width: 20px;
+    }
+
+    & > p {
+        color: white;
+        font-size: 12px;
+    }
+}

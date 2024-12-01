@@ -1,40 +1,29 @@
-%h1
-  Root#index
+.container.root-index
+  %h2= current_user.email
 
-= render "users/shared/links", resource_name: :user, devise_mapping: Devise.mappings[:user]
+  -# = link_to "Edit User", edit_registration_path(current_user)
+  -# = link_to "View Passkeys", users_passkeys_path
 
-%h2
-  User details
+  %section.open-link
+    %h2 open
+    = form_with url: user_link_path, method: :get do |form|
+      = form.number_field :index, placeholder: '001'
+      %button{type: 'submit'}
+        →
 
-= link_to "Edit User", edit_registration_path(current_user)
-= link_to "View Passkeys", users_passkeys_path
+  %section.new-link
+    %h2 create
+    = form_with model: [:users, @link] do |form|
+      = form.text_field :link, placeholder: 'https://aydar.media'
+      %button{type: 'submit'}
+        →
 
-%code
-  = current_user.email
-  = current_user.webauthn_id
-
-%div
-  %h1 list
-  - current_user.links.each do |link|
-    = link.index
-    = link.link
-
-%div
-  %h1 open
-  = form_with url: user_link_path, method: :get do |form|
-    .field
-      = form.label :index
-      = form.number_field :index
-
-    .actions
-      = form.submit
-
-%div
-  %h1 new
-  = form_with model: [:users, @link] do |form|
-    .field
-      = form.label :link
-      = form.text_field :link
-
-    .actions
-      = form.submit
+  %section.list-link
+    %h2 recent
+    - current_user.links.order(created_at: :desc).limit(10).reverse_each.each do |link|
+      %div
+        %span.gray= format_link_index(link.index)
+        = link_to link.link, resolve_link(link.link)
+  
+  .other
+    = render "users/shared/links", resource_name: :user, devise_mapping: Devise.mappings[:user]

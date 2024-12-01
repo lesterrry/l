@@ -1,4 +1,6 @@
 class Users::LinksController < ApplicationController
+  include LinksHelper
+
   def create
     @link = Link.new(link_params)
     @link.user = current_user
@@ -16,9 +18,7 @@ class Users::LinksController < ApplicationController
     if link.nil?
       redirect_to controller: '/root', action: :index
     else
-      url = link.link
-
-      url = "https://#{url}" if url !~ %r{\Ahttp://} && url !~ %r{\Ahttps://}
+      url = resolve_link link.link
 
       redirect_to url, allow_other_host: true
     end
