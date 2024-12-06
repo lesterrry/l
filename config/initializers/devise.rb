@@ -172,6 +172,8 @@ Devise.setup do |config|
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false
 
+  config.remember_for = 1.year
+
   # Options to be passed to the created cookie. For instance, you can set
   # secure: true in order to force SSL only cookies.
   # config.rememberable_options = {}
