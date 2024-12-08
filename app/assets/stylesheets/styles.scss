@@ -14,6 +14,9 @@ body {
     gap: 20px;
     width: 100%;
     height: 100%;
+    overflow: scroll;
+    padding: 60px 0 40px 0;
+    box-sizing: border-box;
 }
 
 h2, p, a, span {

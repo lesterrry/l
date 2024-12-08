@@ -6,6 +6,8 @@
 
     = f.hidden_field :passkey_credential
 
+    = f.check_box :remember_me, { style: 'display: none', checked: true }
+
     = render partial: 'shared/button'
 
   .other
