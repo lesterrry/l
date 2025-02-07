@@ -1,0 +1,69 @@
+.root-index {
+    h2 {
+        margin-bottom: 40px;
+    }
+
+    button {
+        border: none;
+        border-radius: 8px;
+        background-color: var(--blue);
+        color: white;
+        height: auto;
+        width: 50px;
+        box-sizing: border-box;
+        padding: 4px 10px 4px 10px;
+    }
+
+    section {
+        & {
+            width: 280px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+        }
+
+        form {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 6px;
+        }
+    }
+
+    .list-link {
+        a, span {
+            font-size: 14px;
+        }
+
+        a {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        div {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+        }
+    }
+
+    .other {
+        button {
+            margin-top: 40px;
+            background: none;
+            border: none;
+            color: black;
+            text-decoration: underline;
+            font-size: 12px;
+            cursor: pointer;
+            width: initial;
+        }
+    }
+}

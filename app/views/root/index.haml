@@ -1,0 +1,29 @@
+.container.root-index
+  %h2= current_user.email
+
+  -# = link_to "Edit User", edit_registration_path(current_user)
+  -# = link_to "View Passkeys", users_passkeys_path
+
+  %section.open-link
+    %h2 open
+    = form_with url: user_link_path, method: :get do |form|
+      = form.number_field :index, placeholder: '001'
+      %button{type: 'submit'}
+        →
+
+  %section.new-link
+    %h2 create
+    = form_with model: [:users, @link] do |form|
+      = form.text_field :link, placeholder: 'https://aydar.media'
+      %button{type: 'submit'}
+        →
+
+  %section.list-link
+    %h2 recent
+    - current_user.links.order(created_at: :desc).limit(10).each do |link|
+      %div
+        %span.gray= format_link_index(link.index)
+        = link_to link.link, resolve_link(link.link)
+  
+  .other
+    = render "users/shared/links", resource_name: :user, devise_mapping: Devise.mappings[:user]
